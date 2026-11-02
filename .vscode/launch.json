@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run active_tests/start.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/active_tests/start.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
