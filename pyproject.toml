@@ -1,6 +1,10 @@
 [project]
 name = "programatic-x"
 version = "0.1.0"
+dependencies = [
+    "pyautogui",
+    "pillow"
+]
 
 [tool.setuptools.packages.find]
 exclude = ["active_tests*"]
