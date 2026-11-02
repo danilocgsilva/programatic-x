@@ -6,7 +6,11 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/active_tests/start.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
         }
     ]
 }
