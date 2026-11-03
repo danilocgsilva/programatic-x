@@ -1,10 +1,15 @@
 [project]
 name = "programatic-x"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
     "pyautogui",
-    "pillow"
+    "pillow",
+    "opencv-python"
 ]
 
 [tool.setuptools.packages.find]
-exclude = ["active_tests*"]
+exclude = [
+    "active_tests*",
+    "build*",
+    "dist*"
+]
