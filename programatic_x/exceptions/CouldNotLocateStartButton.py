@@ -1,0 +1,2 @@
+class CouldNotLocateStartButton(Exception):
+    pass
