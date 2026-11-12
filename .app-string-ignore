@@ -1,0 +1,10 @@
+^\\programatic_x\\__pycache__
+^\\programatic_x\\factory\\__pycache__
+^\\.git
+^\\build\\lib\\programatic_x
+^\\programatic_x.egg-info
+^\\.app-string-ignore
+^\\answer.md
+^\\assets
+^\\programatic_x\\interfaces\\__pycache__
+^\\programatic_x\\exceptions\\__pycache__
