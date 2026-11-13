@@ -203,6 +203,20 @@ python active_tests/start.py
 
 This runs the full factory → click flow and prints the result. It is excluded from the installable package.
 
+## Running unit tests
+
+```
+pip install pytest pytest-mock
+```
+
+### Run all tests
+
+pytest tests/ -v
+
+### Run with coverage
+
+pytest tests/ -v --cov=programatic_x
+
 ## Known Limitations
 
 - **Windows 10 not supported** — the bundled assets only cover Windows 11. Add your own screenshots for Windows 10 compatibility.

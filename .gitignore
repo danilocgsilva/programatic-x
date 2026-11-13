@@ -5,3 +5,4 @@ programatic_x/__pycache__/*
 programatic_x/factory/__pycache__/*
 programatic_x/interfaces/__pycache__/*
 programatic_x/exceptions/__pycache__/*
+tests/__pycache__/*
