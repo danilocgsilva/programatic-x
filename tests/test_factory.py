@@ -13,7 +13,7 @@ def test_create_linux_button_start(mock_platform_linux):
     button = ButtonStartFactory.create_button_start()
     assert isinstance(button, MainStartKey)
 
-@patch('programatic_x.factory.platform.system')
+@patch('programatic_x.factory.ButtonStartFactory.platform')
 def test_create_default_button_start(mock_system):
     mock_system.return_value = "Linux"
     button = ButtonStartFactory.create_button_start()
