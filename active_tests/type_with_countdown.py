@@ -26,4 +26,4 @@ They are found on every continent except Antarctica, thriving in diverse habitat
 By the way, the fancy character comes from the following stackoverflow link: https://stackoverflow.com/questions/75051207/pyautogui-write-not-automatically-using-shift-to-type-characters-on-non-englis/79134597\#79134597
 '''
 
-long_type.type(text_with_specials)
+long_type.type(text_with_specials, 50)
