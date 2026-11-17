@@ -9,6 +9,7 @@ class WindowsButtonStart(ButtonStartInterface):
         # Define fallback image paths with their confidence thresholds
         image_configs = [
             ("windows11_start_menu_100_dark.png", 0.8),
+            ("windows11_start_menu_150_dark.png", 0.8),
             ("windows11_start_menu_100_light.png", 0.8),
             ("windows11_start_menu_150_light.png", 0.8)
         ]
