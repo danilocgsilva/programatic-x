@@ -1,10 +1,11 @@
 [project]
 name = "programatic-x"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = [
     "pyautogui",
     "pillow",
-    "opencv-python"
+    "opencv-python",
+    "pynput"
 ]
 
 [tool.setuptools.packages.find]
