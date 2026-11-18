@@ -5,7 +5,7 @@ import pyautogui
 class Image:
     @staticmethod
     def get_image_path(image_name: str):
-        return os.path.join("assets", image_name)
+        return os.path.join("programatic_x", "assets", image_name)
 
     @staticmethod
     def get_center(image_name: str, confidence=0.6):
