@@ -1,7 +1,10 @@
 ^\\programatic_x\\__pycache__
+^\\tests\\__pycache__
 ^\\programatic_x\\factory\\__pycache__
+^\\.vscode
+^\\.pytest_cache
 ^\\.git
-^\\build\\lib\\programatic_x
+^\\build
 ^\\programatic_x.egg-info
 ^\\.app-string-ignore
 ^\\answer.md
