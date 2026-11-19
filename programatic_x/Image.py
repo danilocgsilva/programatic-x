@@ -1,17 +1,29 @@
-from importlib.resources import files as pkg_files
-import os
+from importlib.resources import files
 import pyautogui
 
 class Image:
     @staticmethod
-    def get_image_path(image_name: str):
-        return os.path.join("programatic_x", "assets", image_name)
+    def get_image_path(image_name: str) -> str:
+        """
+        Returns the absolute path to an image in the assets folder.
+        Uses importlib.resources to ensure the path is correct 
+        even when the package is installed in site-packages.
+        """
+        # Get the path to the 'programatic_x' package directory
+        package_dir = files("programatic_x")
+        # Join the 'assets' folder and the image name
+        image_path = package_dir.joinpath("assets", image_name)
+        return str(image_path)
 
     @staticmethod
     def get_center(image_name: str, confidence=0.6):
         image_path = Image.get_image_path(image_name)
+        
+        # pyautogui.locateOnScreen will raise ImageNotFoundException if confidence is used and it fails
         image_location = pyautogui.locateOnScreen(image_path, confidence=confidence)
+        
         if image_location is not None:
             return pyautogui.center(image_location)
         else:
-            raise Exception(f"{image_name} not found on the screen.")
+            # Raise the specific exception that WindowsButtonStart expects
+            raise pyautogui.ImageNotFoundException(f"{image_name} not found on the screen.")
