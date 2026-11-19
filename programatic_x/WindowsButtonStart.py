@@ -4,7 +4,7 @@ from programatic_x.Image import Image
 from programatic_x.exceptions.CouldNotLocateStartButton import CouldNotLocateStartButton
 
 class WindowsButtonStart(ButtonStartInterface):
-    def click(self):
+    def click(self, smooth_time: int = 0):
         """Click the Windows start button using image recognition."""
         # Define fallback image paths with their confidence thresholds
         image_configs = [
@@ -17,10 +17,13 @@ class WindowsButtonStart(ButtonStartInterface):
         for image_path, confidence in image_configs:
             try:
                 image_center = Image.get_center(image_path, confidence)
-                pyautogui.click(image_center)
-                return  # Success - exit early
+                if smooth_time == 0:
+                    pyautogui.click(image_center)
+                else:
+                    pyautogui.moveTo(image_center[0], image_center[1], smooth_time)
+                    pyautogui.click()
+                return
             except pyautogui.ImageNotFoundException:
-                continue  # Try the next image configuration
+                continue
         
-        # If we reach here, all attempts failed
         raise CouldNotLocateStartButton("The start button could not be found.")
