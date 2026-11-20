@@ -20,8 +20,13 @@ class Image:
         return str(image_path)
 
     @staticmethod
-    def get_center(image_name: str, confidence=0.6):
-        image_path = Image.get_image_path(image_name)
+    def get_center(
+        image_name: str, 
+        confidence=0.6,
+        package_path: str = "programatic_x",
+        relative_path: str = "assets"
+    ):
+        image_path = Image.get_image_path(image_name, package_path, relative_path)
         
         # pyautogui.locateOnScreen will raise ImageNotFoundException if confidence is used and it fails
         image_location = pyautogui.locateOnScreen(image_path, confidence=confidence)
