@@ -3,16 +3,20 @@ import pyautogui
 
 class Image:
     @staticmethod
-    def get_image_path(image_name: str) -> str:
+    def get_image_path(
+        image_name: str, 
+        package_path: str = "programatic_x",
+        relative_path: str = "assets"
+    ) -> str:
         """
         Returns the absolute path to an image in the assets folder.
         Uses importlib.resources to ensure the path is correct 
         even when the package is installed in site-packages.
         """
         # Get the path to the 'programatic_x' package directory
-        package_dir = files("programatic_x")
+        package_dir = files(package_path)
         # Join the 'assets' folder and the image name
-        image_path = package_dir.joinpath("assets", image_name)
+        image_path = package_dir.joinpath(relative_path, image_name)
         return str(image_path)
 
     @staticmethod
