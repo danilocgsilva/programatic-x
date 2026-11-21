@@ -29,7 +29,7 @@ class Image:
         image_path = Image.get_image_path(image_name, package_path, relative_path)
         
         # pyautogui.locateOnScreen will raise ImageNotFoundException if confidence is used and it fails
-        image_location = pyautogui.locateOnScreen(image_path, confidence=confidence)
+        image_location = pyautogui.locateOnScreen(image_path, confidence=confidence, grayscale=True)
         
         if image_location is not None:
             return pyautogui.center(image_location)
