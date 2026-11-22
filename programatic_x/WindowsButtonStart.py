@@ -13,10 +13,10 @@ class WindowsButtonStart(ButtonStartInterface):
             ("windows11_start_menu_100_light.png", 0.8),
             ("windows11_start_menu_150_light.png", 0.8)
         ]
-        
+        image_instance = Image()
         for image_path, confidence in image_configs:
             try:
-                image_center = Image.get_center(image_path, confidence)
+                image_center = image_instance.get_center(image_path, confidence)
                 if smooth_time == 0:
                     if not click_await == 0:
                         sleep(click_await)
