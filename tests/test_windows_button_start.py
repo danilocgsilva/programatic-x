@@ -36,7 +36,7 @@ def test_falls_back_to_second_image(MockImage, mock_click, image_center):
 
     assert MockImage.get_center.call_args_list == [
         call("windows11_start_menu_100_dark.png", 0.8),
-        call("windows11_start_menu_100_light.png", 0.8),
+        call("windows11_start_menu_150_dark.png", 0.8),
     ]
 
     mock_click.assert_called_once_with(image_center)
@@ -50,5 +50,5 @@ def test_all_images_fail_raises_and_never_clicks(MockImage, mock_click):
     with pytest.raises(CouldNotLocateStartButton):
         WindowsButtonStart().click()
 
-    assert MockImage.get_center.call_count == 3
+    assert MockImage.get_center.call_count == 4
     mock_click.assert_not_called()

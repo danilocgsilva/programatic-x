@@ -1,5 +1,6 @@
 import pytest
 from unittest.mock import patch, MagicMock
+import pyautogui
 from programatic_x.factory.ButtonStartFactory import ButtonStartFactory
 from programatic_x.WindowsButtonStart import WindowsButtonStart
 from programatic_x.MainStartKey import MainStartKey
@@ -9,6 +10,7 @@ def mock_pyautogui():
     with patch('programatic_x.Image.pyautogui') as mock_pyautogui:
         mock_pyautogui.locateOnScreen.return_value = None
         mock_pyautogui.center.return_value = (500, 500)
+        mock_pyautogui.ImageNotFoundException = pyautogui.ImageNotFoundException
         yield mock_pyautogui
 
 @pytest.fixture(autouse=True)

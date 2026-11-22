@@ -24,7 +24,7 @@ class Image:
     def template(self):
         return self._template
     
-    @template.setter(self, template)
+    @template.setter
     def template(self, template):
         self._template = template
     
