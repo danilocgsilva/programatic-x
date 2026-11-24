@@ -56,23 +56,34 @@ class Image:
     def get_center(
         self,
         image_name: str,
-        confidence=0.75,
+        confidence: float = 0.75,
         package_path="programatic_x",
-        relative_path="assets"
-    ):
-        self.compare(image_name, package_path, relative_path)
+        relative_path="assets",
+    ) -> list[tuple[int, int]]:
+        image_path = self.get_image_path(
+            image_name,
+            package_path,
+            relative_path,
+        )
+        screenshot = pyautogui.screenshot()
+        screen = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+        icon = cv2.imread(image_path, cv2.IMREAD_COLOR)
 
-        if self.max_val < confidence:
+        if icon is None:
+            raise FileNotFoundError(image_path)
+
+        icon_height, icon_width = icon.shape[:2]
+        scores = cv2.matchTemplate(screen, icon, cv2.TM_CCOEFF_NORMED)
+        ys, xs = np.where(scores >= confidence)
+
+        if len(xs) == 0:
             raise pyautogui.ImageNotFoundException(
-                f"{image_name} not found. Score: {self.max_val:.4f}"
+                f"{image_name} not found at confidence {confidence:.4f}"
             )
 
-        height, width = self.template.shape
-
-        center_x = self.max_loc[0] + width // 2
-        center_y = self.max_loc[1] + height // 2
-
-        return center_x, center_y
+        centers_x = xs + (icon_width // 2)
+        centers_y = ys + (icon_height // 2)
+        return list(zip(centers_x.tolist(), centers_y.tolist()))
     
     def compare(
         self,

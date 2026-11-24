@@ -13,12 +13,12 @@ def image_center():
 @patch("programatic_x.WindowsButtonStart.pyautogui.click")
 @patch("programatic_x.WindowsButtonStart.Image")
 def test_first_image_success_clicks_and_stops(MockImage, mock_click, image_center):
-    MockImage.get_center.return_value = image_center
+    MockImage.return_value.get_center.return_value = [image_center]
 
     WindowsButtonStart().click()
 
     # Tried exactly the first image
-    MockImage.get_center.assert_called_once_with(
+    MockImage.return_value.get_center.assert_called_once_with(
         "windows11_start_menu_100_dark.png", 0.8
     )
     # Clicked exactly the center it was given
@@ -27,14 +27,14 @@ def test_first_image_success_clicks_and_stops(MockImage, mock_click, image_cente
 @patch("programatic_x.WindowsButtonStart.pyautogui.click")
 @patch("programatic_x.WindowsButtonStart.Image")
 def test_falls_back_to_second_image(MockImage, mock_click, image_center):
-    MockImage.get_center.side_effect = [
+    MockImage.return_value.get_center.side_effect = [
         ImageNotFoundException,
-        image_center,
+        [image_center],
     ]
 
     WindowsButtonStart().click()
 
-    assert MockImage.get_center.call_args_list == [
+    assert MockImage.return_value.get_center.call_args_list == [
         call("windows11_start_menu_100_dark.png", 0.8),
         call("windows11_start_menu_150_dark.png", 0.8),
     ]
@@ -45,10 +45,10 @@ def test_falls_back_to_second_image(MockImage, mock_click, image_center):
 @patch("programatic_x.WindowsButtonStart.pyautogui.click")
 @patch("programatic_x.WindowsButtonStart.Image")
 def test_all_images_fail_raises_and_never_clicks(MockImage, mock_click):
-    MockImage.get_center.side_effect = ImageNotFoundException
+    MockImage.return_value.get_center.side_effect = ImageNotFoundException
 
     with pytest.raises(CouldNotLocateStartButton):
         WindowsButtonStart().click()
 
-    assert MockImage.get_center.call_count == 4
+    assert MockImage.return_value.get_center.call_count == 4
     mock_click.assert_not_called()
