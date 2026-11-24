@@ -84,37 +84,3 @@ class Image:
         centers_x = xs + (icon_width // 2)
         centers_y = ys + (icon_height // 2)
         return list(zip(centers_x.tolist(), centers_y.tolist()))
-    
-    def compare(
-        self,
-        image_name: str,
-        package_path="programatic_x",
-        relative_path="assets"
-    ):
-        # Argument image threatment
-        image_path = self.get_image_path(
-            image_name,
-            package_path,
-            relative_path
-        )
-        self.template = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-        if self.template is None:
-            raise FileNotFoundError(image_path)
-
-        # Screenshot data threatment
-        screenshot = np.array(pyautogui.screenshot())
-        screenshot = cv2.cvtColor(
-            screenshot,
-            cv2.COLOR_RGB2GRAY
-        )
-
-        # Solving
-        result = cv2.matchTemplate(
-            screenshot,
-            self.template,
-            cv2.TM_CCOEFF_NORMED
-        )
-
-        _, max_val, _, max_loc = cv2.minMaxLoc(result)
-        self.max_val = max_val
-        self.max_loc = max_loc
