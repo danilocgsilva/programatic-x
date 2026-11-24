@@ -16,7 +16,7 @@ class WindowsButtonStart(ButtonStartInterface):
         image_instance = Image()
         for image_path, confidence in image_configs:
             try:
-                image_centers = image_instance.get_center(image_path, confidence)
+                image_centers = image_instance.get_centers(image_path, confidence)
                 image_center = image_centers[0]
                 if smooth_time == 0:
                     if not click_await == 0:

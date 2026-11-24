@@ -163,7 +163,7 @@ from programatic_x.Image import Image
 
 Resolves an image filename to `assets/<image_name>` relative to the working directory.
 
-#### `Image.get_center(image_name: str, confidence: float = 0.6) -> tuple`
+#### `Image.get_centers(image_name: str, confidence: float = 0.6) -> tuple`
 
 Locates `image_name` on the screen using `pyautogui.locateOnScreen` and returns the center coordinate of the matched region. Raises an `Exception` if the image is not found.
 

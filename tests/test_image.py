@@ -4,7 +4,7 @@ import numpy as np
 import pyautogui
 from programatic_x.Image import Image
 
-def test_get_center_success(mock_pyautogui):
+def test_get_centers_success(mock_pyautogui):
     image_instance = Image()
     mock_pyautogui.screenshot.return_value = np.zeros((100, 100, 3))
 
@@ -20,11 +20,11 @@ def test_get_center_success(mock_pyautogui):
             return_value=np.array([[0.9, 0.1], [0.1, 0.95]]),
         ),
     ):
-        result = image_instance.get_center("test.png")
+        result = image_instance.get_centers("test.png")
 
     assert result == [(20, 10), (21, 11)]
 
-def test_get_center_not_found(mock_pyautogui):
+def test_get_centers_not_found(mock_pyautogui):
     image_instance = Image()
     mock_pyautogui.screenshot.return_value = np.zeros((100, 100, 3))
 
@@ -41,4 +41,4 @@ def test_get_center_not_found(mock_pyautogui):
         ),
     ):
         with pytest.raises(pyautogui.ImageNotFoundException):
-            image_instance.get_center("test.png", confidence=0.75)
+            image_instance.get_centers("test.png", confidence=0.75)
