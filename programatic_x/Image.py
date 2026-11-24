@@ -53,7 +53,7 @@ class Image:
         image_path = package_dir.joinpath(relative_path, image_name)
         return str(image_path)
         
-    def get_center(
+    def get_centers(
         self,
         image_name: str,
         confidence: float = 0.75,
