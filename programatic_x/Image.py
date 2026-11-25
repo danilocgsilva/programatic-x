@@ -2,8 +2,10 @@ from importlib.resources import files
 import pyautogui
 import cv2
 import numpy as np
+from typing import List
+from programatic_x.named_tuples.Coordinate import Coordinate
 
-class Image:   
+class Image:
     def get_image_path(
         self,
         image_name: str, 
@@ -27,7 +29,32 @@ class Image:
         confidence: float = 0.9,
         package_path: str = "programatic_x",
         relative_path: str = "assets"
-    ):
+    ) -> List[Coordinate]:
+        '''
+        Output example:
+        ### Scenario 1: Single Icon Detected
+        ```python
+        # Assuming one icon match found at screen position (500, 300)
+        result = [
+            (500, 300)
+        ]
+        ```
+
+        ### Scenario 2: Multiple Icons Detected
+        ```python
+        # Assuming three icons matched on screen
+        result = [
+            (120, 45),      # Top-left icon center
+            (450, 45),      # Top-middle icon center
+            (800, 45)       # Top-right icon center
+        ]
+        ```
+
+        ### Scenario 3: No Icons Detected (Below Confidence Threshold)
+        ```python
+        # No matches found on screen
+        result = []
+        '''
         screenshot = pyautogui.screenshot()
 
         screen = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
