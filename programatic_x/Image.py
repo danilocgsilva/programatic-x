@@ -4,10 +4,11 @@ import cv2
 import numpy as np
 from typing import List
 from programatic_x.named_tuples.Coordinate import Coordinate
+from programatic_x.named_tuples.XYsize import XYsize
 
 class Image:
     centers: List[Coordinate]
-    dimensions: List[Coordinate]  # Stores (width, height) for each detected icon
+    dimensions: List[XYsize]  # Stores (width, height) for each detected icon
 
     def get_image_path(
         self,
