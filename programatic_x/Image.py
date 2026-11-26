@@ -66,16 +66,9 @@ class Image:
         self.compute(image_name, confidence, package_path, relative_path)
         return self.centers
 
-    def get_dimensions(
-        self, 
-        image_name: str, 
-        confidence: float = 0.9,
-        package_path: str = "programatic_x",
-        relative_path: str = "assets"
-    ) -> List[Coordinate]:
+    def get_dimensions(self) -> List[Coordinate]:
         """
         Returns the width and height of each detected icon.
         Each dimension corresponds to a detected center in the same order.
         """
-        self.compute(image_name, confidence, package_path, relative_path)
         return self.dimensions
