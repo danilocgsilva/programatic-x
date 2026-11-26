@@ -51,7 +51,7 @@ class Image:
 
         # Create matching dimensions list for each detected center
         self.dimensions = [
-            Coordinate(icon_width, icon_height)
+            XYsize(icon_width, icon_height)
             for _ in range(len(self.centers))
         ]
 
@@ -67,7 +67,7 @@ class Image:
         self.compute(image_name, confidence, package_path, relative_path)
         return self.centers
 
-    def get_dimensions(self) -> List[Coordinate]:
+    def get_dimensions(self) -> List[XYsize]:
         """
         Returns the width and height of each detected icon.
         Each dimension corresponds to a detected center in the same order.
